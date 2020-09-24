@@ -73,40 +73,84 @@ class Metronome extends Component {
         this.setState({ beatsPerMeasure })
     }
 
+    onValueChange = event => {
+        const beatsPerMeasure = event.target.value
+        this.setState({
+            beatsPerMeasure
+        })
+        console.log(this.state.beatsPerMeasure)
+    }
+
     render() {
-        const { playing, bpm } = this.state;
+        const { playing, bpm, beatsPerMeasure } = this.state;
 
         return (
             <div className="metronome">
-                <div>
+                <div className="ad-App">
 
                     <div className="title">Metronome</div>
-                    <div className="bpm-slider">
-                        <div>{bpm} BPM</div>
-                        <input
-                            type="range"
-                            min="50"
-                            max="300"
-                            value={bpm}
-                            onChange={this.handleBpmChange} />
+                    <div className="ad-Controls">
+                        <div className="bpm-slider">
+                            <div>{bpm} BPM</div>
+                            <input
+                                className="bpm-slider-input"
+                                type="range"
+                                min="50"
+                                max="300"
+                                value={bpm}
+                                onChange={this.handleBpmChange} />
+                        </div>
                     </div>
 
                     <button onClick={this.startStop}>{playing ? 'Stop' : 'Start'}</button>
 
-                    <select
-                        className="select-beat"
-                        value={this.state.beatsPerMeasure}
-                        onChange={this.changeMeasure}>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                    </select>
+                    <div className="choices">
+                        <label className="choice">
+                            <input
+                                className="choice-input"
+                                type="radio"
+                                value={2}
+                                checked={Number(beatsPerMeasure) === 2}
+                                onChange={this.onValueChange} />
+                            <div className="choice-fake">
+                                2
+                            </div>
+                        </label>
+                        <label className="choice">
+                            <input
+                                className="choice-input"
+                                type="radio"
+                                value={3}
+                                checked={Number(beatsPerMeasure) === 3}
+                                onChange={this.onValueChange} />
+                            <div className="choice-fake">
+                                3
+                            </div>
+                        </label>
+                        <label className="choice">
+                            <input
+                                className="choice-input"
+                                type="radio"
+                                value={4}
+                                checked={Number(beatsPerMeasure) === 4}
+                                onChange={this.onValueChange} />
+                            <div className="choice-fake">
+                                4
+                            </div>
+                        </label>
+                        <label className="choice">
+                            <input
+                                className="choice-input"
+                                type="radio"
+                                value={5}
+                                checked={Number(beatsPerMeasure) === 5}
+                                onChange={this.onValueChange} />
+                            <div className="choice-fake">
+                                5
+                            </div>
+                        </label>
+                    </div>
                 </div>
-
-
             </div>
         )
     }

@@ -1,3 +1,14 @@
+
+:root {
+    --ad-Color-prim: #1e1e1e;
+    --ad-Color-sec: #00E676;
+    --ad-Color-del: #E53935;
+}
+
+body{
+    background-color: #000;
+    color: #eee;
+}
 .metronome {
     text-align: center;
     max-width: 375px;
@@ -9,16 +20,18 @@
     font-size: 50px;
     margin-bottom: 40px;
 }
-.bpm-slider input{
-    width: 100%;
-    margin: 10px;
+
+.ad-Controls {
+    overflow: auto;
+    flex: 1;
+    padding: 2rem;
 }
 
 .metronome button{
-    background-color: #c94d46;
+    background-color: var(--ad-Color-sec);
     padding: 10px;
-    border: 1px solid #832420;
-    border-radius: 2px;
+    border: 1px solid #0a5e0e;
+    border-radius: 5px;
     width: 100px;
     color: #fff;
     font-size: 18px;
@@ -26,7 +39,7 @@
 }
 
 .metronome button:hover{
-    background-color: #832420;
+    background-color: #48e298;
 }
 .metronome button:focus{
     outline: none;
@@ -47,4 +60,93 @@
     margin: 0 auto;
     -moz-appearance: none;
     -webkit-appearance: none;
+}
+
+.bpm-slider{
+    display: flex;
+    align-items: center;
+}
+
+.bpm-slider-input{
+    width: 100%;
+    height: 14px;
+    appearance: none;
+    border-radius: 30px;
+    background: var(--ad-Color-prim);
+}
+
+.bpm-slider-input:focus{
+    background: #333;
+    outline: none;
+}
+
+.bpm-slider-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 4px solid #fff;
+    background: color(var(--ad-Color-prim) l(+10%));
+    border-radius: 50%;
+    cursor: pointer;
+    transition: border .2s;
+}
+
+.bpm-slider-input::-moz-range-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 4px solid #fff;
+    background: var(--ad-Color-prim);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: border .2s;
+}
+
+.bpm-slider-input:hover::-webkit-slider-thumb{
+    border-color: var(--ad-Color-sec);
+}
+.bpm-slider-input:focus::-webkit-slider-thumb {
+    border-color: var(--ad-Color-sec);
+    outline: none;
+}
+.bpm-slider-input:hover::-moz-range-thumb{
+    border-color: var(--ad-Color-sec);
+}
+.bpm-slider-input:focus::-moz-range-thumb {
+    border-color: var(--ad-Color-sec);
+    outline: none;
+}
+
+.choices{
+    display: flex;
+    /*width: 12rem;*/
+    align-content: center;
+}
+.choice{
+    flex: 1;
+}
+.choice-input {
+    display: none;
+}
+.choice-fake {
+    padding: .6rem;
+    background: #444;
+    border: 4px solid transparent;
+    transition: border .2s;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Open Sans", sans-serif;
+    font-size: .8rem;
+    font-weight: bold;
+    color: #fff;
+}
+.choice:first-child .choice-fake{
+    border-radius: 5px 0 0 5px;
+}
+.choice:last-child .choice-fake {
+    border-radius: 0 5px 5px 0;
+}
+.choice-input:checked + .choice-fake {
+    border-color: var(--ad-Color-sec);
 }
