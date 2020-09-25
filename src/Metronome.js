@@ -12,7 +12,8 @@ class Metronome extends Component {
             playing: false,
             count: 0,
             bpm: 120,
-            beatsPerMeasure: 4
+            beatsPerMeasure: 4,
+            highlight: false
         }
         this.click1 = new Audio(click1);
         this.click2 = new Audio(click2);
@@ -46,7 +47,9 @@ class Metronome extends Component {
         } else {
             this.click1.play();
         }
+        this.handleLights()
 
+        console.log(this.state.highlight);
         this.setState(state => ({
             count: (state.count + 1) % state.beatsPerMeasure
         }));
@@ -68,10 +71,6 @@ class Metronome extends Component {
         }
     }
 
-    changeMeasure = event => {
-        const beatsPerMeasure = event.target.value
-        this.setState({ beatsPerMeasure })
-    }
 
     onValueChange = event => {
         const beatsPerMeasure = event.target.value
@@ -86,6 +85,8 @@ class Metronome extends Component {
 
         return (
             <div className="metronome">
+                <div className="circle">
+                </div>
                 <div className="ad-App">
 
                     <div className="title">Metronome</div>
